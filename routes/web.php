@@ -11,4 +11,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
+Route::domain('{account}.subdomains.test')->group(function () {
+    Route::get('/test', function (string $account) {
+        return ['message' => 'Hello from '.$account];
+    })->name('test');
+});
+
 require __DIR__.'/settings.php';
