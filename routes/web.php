@@ -13,8 +13,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::domain('{account}.subdomains.test')->group(function () {
     Route::get('/test', function (string $account) {
-        return ['message' => 'Hello from '.$account];
-    })->name('test');
+        $data = ['account' => $account];
+
+        return inertia('welcome', $data);
+    })->name('test.index');
 });
 
 require __DIR__.'/settings.php';
